@@ -11,3 +11,4 @@
 <li>mongodb atlas for deployed db</li>
 <li>see pet-pal-rebrand for auth</li>
 <li>docker</li>
+<li>kubernetes</li>
