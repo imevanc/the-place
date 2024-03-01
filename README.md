@@ -1,5 +1,6 @@
 # The Place
-<ul><li>google maps</li>
+<ul>
+<li>google maps</li>
 <li>mongodb</li>
 <li>tailwind</li>
 <li>typescript</li>
@@ -12,3 +13,4 @@
 <li>see pet-pal-rebrand for auth</li>
 <li>docker</li>
 <li>kubernetes</li>
+</ul>
