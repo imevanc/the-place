@@ -13,4 +13,7 @@
 <li>see pet-pal-rebrand for auth</li>
 <li>docker</li>
 <li>kubernetes</li>
+<li>jest</li>
+<li>react testing library</li>
+<li>playwright</li>
 </ul>
