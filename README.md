@@ -17,4 +17,6 @@
 <li>react testing library</li>
 <li>playwright</li>
 <li>color palette</li>
+<li>find photos</li>
+<li>stripe</li>
 </ul>
