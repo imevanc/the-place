@@ -20,4 +20,5 @@
 <li>find photos</li>
 <li>stripe</li>
 <li>event driven architecture for receipt generation</li>
+<li>bitcoin</li>
 </ul>
