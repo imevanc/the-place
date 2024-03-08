@@ -21,4 +21,5 @@
 <li>stripe</li>
 <li>event driven architecture for receipt generation</li>
 <li>bitcoin</li>
+<li>analytics</li>
 </ul>
