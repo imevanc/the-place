@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import { Navbar } from "@/components";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "The Place",
@@ -13,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="h-screen w-screen">{children}</body>
+      <body className="h-screen w-screen">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

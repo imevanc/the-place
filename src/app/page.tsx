@@ -1,9 +1,12 @@
+import React from "react";
 import { NextPage } from "next/types";
 
-const Homepage: NextPage = () => (
-  <div className="flex min-h-screen flex-col items-center justify-between">
-    <h1 className="p-24 text-3xl text-red-500">Hello World!</h1>
-  </div>
-);
+const Homepage: NextPage = () => {
+  return (
+    <main>
+      <h1 className="bg-red-500">Hello World!</h1>
+    </main>
+  );
+};
 
 export default Homepage;
