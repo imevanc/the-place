@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { Homepage } from "@/app";
 import { renderPage } from "../utils";
-import { Navbar } from "@/components";
+
 
 test("renders heading", () => {
   renderPage(<Homepage />);
