@@ -16,7 +16,7 @@ const RootLayout = ({
   <html lang="en">
     <body className="h-screen w-screen">
       <div className="h-full max-w-9xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto h-full max-w-7xl flex flex-col items-center justify-center px-2 sm:px-6 lg:px-8">
+        <div className="mx-auto h-full max-w-7xl flex flex-col items-center justify-start px-2 sm:px-6 lg:px-8">
           <Header />
           {children}
           <Footer />
