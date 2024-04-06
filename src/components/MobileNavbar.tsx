@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
@@ -19,7 +20,7 @@ export const MobileNavbar: FC = () => {
         </button>
       </div>
       <div className={`lg:flex lg:items-center ${isMenuOpen ? 'block' : 'hidden'}`}>
-        <Link href="/">
+        {/* <Link href="/">
           <a className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4">
             Explore by City
           </a>
@@ -33,7 +34,7 @@ export const MobileNavbar: FC = () => {
           <a className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4">
             Sign In
           </a>
-        </Link>
+        </Link> */}
         <div className="block mt-4 lg:inline-block lg:mt-0">
           <a href="#" className="text-white mr-4">
             Download the App
