@@ -2,7 +2,7 @@
 import { FC } from "react";
 
 export const Navbar: FC = () => (
-  <nav className="flex justify-between items-center bg-white h-16 px-4 shadow-md">
+  <nav className="w-full flex justify-between items-center bg-white h-16 px-4 shadow-md">
     <ol className="flex items-center">
       <li className="text-xl font-bold mr-4">Logo Placeholder</li>
       <li className="mr-4">
