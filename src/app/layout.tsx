@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import { Navbar } from "@/components";
+import { Footer, Header } from "@/components";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -8,17 +8,22 @@ export const metadata: Metadata = {
   description: "The Place To Be",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className="h-screen w-screen">
-        <Navbar />
-        {children}
-      </body>
-    </html>
-  );
-}
+}>) => (
+  <html lang="en">
+    <body className="h-screen w-screen">
+      <div className="h-full max-w-9xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto h-full max-w-7xl flex flex-col items-center justify-start px-2 sm:px-6 lg:px-8">
+          <Header />
+          {children}
+          <Footer />
+        </div>
+      </div>
+    </body>
+  </html>
+);
+
+export default RootLayout;
