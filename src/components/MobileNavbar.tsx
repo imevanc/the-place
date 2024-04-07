@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
 import { FC } from 'react';
 
@@ -18,23 +18,27 @@ export const MobileNavbar: FC = () => {
           {isMenuOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
         </button>
 
-        <div
-          className={`lg:flex lg:items-center ${isMenuOpen ? 'block' : 'hidden'}`}
-        ></div>
-        <li className="mr-4">
-          <a href="/" className="block mt-4 lg:inline-block lg:mt-0 text-white">
-            Explore by City
-          </a>
-        </li>
+        {isMenuOpen && (
+          <Fragment>
+            <li className="mr-4">
+              <a
+                href="/"
+                className="block mt-4 lg:inline-block lg:mt-0 text-white"
+              >
+                Explore by City
+              </a>
+            </li>
 
-        <li>
-          <a
-            href="/about"
-            className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
-          >
-            About
-          </a>
-        </li>
+            <li>
+              <a
+                href="/about"
+                className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+              >
+                About
+              </a>
+            </li>
+          </Fragment>
+        )}
       </ol>
       <button
         onClick={() => console.log('Sign In clicked')}
