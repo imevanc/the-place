@@ -1,7 +1,7 @@
-'use client';
-import React, { useState, Fragment } from 'react';
-import { HiMenuAlt3, HiX } from 'react-icons/hi';
-import { FC } from 'react';
+"use client";
+import React, { useState, Fragment } from "react";
+import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { FC } from "react";
 
 export const MobileNavbar: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,14 +41,14 @@ export const MobileNavbar: FC = () => {
         )}
       </ol>
       <button
-        onClick={() => console.log('Sign In clicked')}
+        onClick={() => console.log("Sign In clicked")}
         className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
       >
         Sign In
       </button>
       <div className="block mt-4 lg:inline-block lg:mt-0">
         <button
-          onClick={() => console.log('Sign In clicked')}
+          onClick={() => console.log("Sign In clicked")}
           className="text-white mr-4"
         >
           Download the App

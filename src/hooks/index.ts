@@ -1,1 +1,1 @@
-export { useScreenMatcher } from './useScreenMatcher'
+export { useScreenMatcher } from "./useScreenMatcher";
