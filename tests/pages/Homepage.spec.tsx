@@ -1,6 +1,11 @@
 import { screen } from "@testing-library/react";
 import { Homepage } from "@/app";
 import { renderPage } from "../utils";
+import { useScreenMatcher } from "@/hooks";
+
+jest.mock("../../src/hooks/useScreenMatcher");
+const mockUseScreenMatcher = jest.mocked(useScreenMatcher);
+mockUseScreenMatcher.mockReturnValue({ screenMatches: true });
 
 test("renders heading", () => {
   renderPage(<Homepage />);
@@ -10,20 +15,30 @@ test("renders heading", () => {
   expect(heading).toBeVisible();
 });
 
-test("renders navbar", () => {
+test("renders desktop navbar", () => {
   renderPage(<Homepage />);
-  const navbar: HTMLElement = screen.getAllByRole("navigation")[0];
-  expect(navbar).toBeVisible();
-  const about: HTMLElement = screen.getAllByRole("link", {
+  const navbar: HTMLElement = screen.getByRole("navigation");
+  const about: HTMLElement = screen.getByRole("link", {
     name: /About/i,
-  })[0];
-  expect(about).toBeVisible();
-  const explorebycity: HTMLElement = screen.getAllByRole("link", {
+  });
+  const exploreByCity: HTMLElement = screen.getByRole("link", {
     name: /Explore by city/i,
-  })[0];
-  expect(explorebycity).toBeVisible();
-  const signin: HTMLElement = screen.getAllByRole("button", {
+  });
+  const signIn: HTMLElement = screen.getByRole("button", {
     name: /Sign In/i,
-  })[0];
-  expect(signin).toBeVisible();
+  });
+
+  expect(navbar).toBeVisible();
+  expect(about).toBeVisible();
+  expect(exploreByCity).toBeVisible();
+  expect(signIn).toBeVisible();
+});
+
+test("renders mobile navbar", () => {
+  mockUseScreenMatcher.mockReturnValue({ screenMatches: false });
+  renderPage(<Homepage />);
+  const downloadTheApp: HTMLElement = screen.getByRole("button", {
+    name: /Download the App/i,
+  });
+  expect(downloadTheApp).toBeVisible();
 });

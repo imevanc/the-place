@@ -11,7 +11,7 @@ export const MobileNavbar: FC = () => {
   };
 
   return (
-    <nav className="bg-blue-500 text-white p-4 flex justify-between items-center">
+    <nav className="bg-blue-500 text-white p-4 flex sm:hidden justify-between items-center">
       <ol className="flex items-center">
         <li className="text-2xl font-bold mr-4">Logo Placeholder</li>
         <button onClick={toggleMenu} className="lg:hidden">
