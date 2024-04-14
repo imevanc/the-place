@@ -35,24 +35,27 @@ export const MobileNavbar: FC = () => {
                 About
               </a>
             </li>
-
-            <button
-              onClick={() => console.log('Sign In clicked')}
+            <li>
+            <a
+              href='/signin'
               className="block mt-2 lg:inline-block lg:mt-0 text-primary-400"
             >
               Sign In
-            </button>
-            <button
-              onClick={() => console.log('Sign In clicked')}
+            </a>
+            </li>
+            <li>
+            <a
+            href='/downloadtheapp'
               className="text-primary-400 mt-4"
             >
               Download the App
-            </button>
+            </a>
+            </li>
           </Fragment>
         )}
       </ol>
       <button onClick={toggleMenu} className="lg:hidden mt-2">
-        {isMenuOpen ? <HiX size={28} /> : <HiBars4 size={28} />}
+        {isMenuOpen ? (<><HiX size={28} /> <span className='sr-only'>X button</span></>) : (<><HiBars4 size={28} /> <span className='sr-only'>Burger button</span></>)}
       </button>
     </nav>
   );
