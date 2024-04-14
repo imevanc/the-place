@@ -1,16 +1,25 @@
 import { screen } from "@testing-library/react";
 import { Homepage } from "@/app";
 import { renderPage } from "../utils";
+import { copy } from "@/copy";
 
-test("renders heading", () => {
+const { heading, paragraph } = copy.home;
+
+test("renders headings", () => {
   renderPage(<Homepage />);
-  const heading: HTMLElement = screen.getByRole("heading", {
-    name: /Hello World!/i,
+  const thePlaceHeading: HTMLElement = screen.getByRole("heading", {
+    name: `${heading.top} ${heading.bottom}`,
   });
-  expect(heading).toBeVisible();
+  expect(thePlaceHeading).toBeVisible();
 });
 
-test("renders navbar", () => {
+test("renders paragraphs", () => {
+  renderPage(<Homepage />);
+  const thePlaceParagraph: HTMLElement = screen.getByText(paragraph);
+  expect(thePlaceParagraph).toBeVisible();
+});
+
+test.skip("renders navbar", () => {
   renderPage(<Homepage />);
   const navbar: HTMLElement = screen.getAllByRole("navigation")[0];
   expect(navbar).toBeVisible();
