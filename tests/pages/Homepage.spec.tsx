@@ -19,6 +19,14 @@ test("renders paragraphs", () => {
   expect(thePlaceParagraph).toBeVisible();
 });
 
+test("renders image", () => {
+  renderPage(<Homepage />);
+  const image: HTMLElement = screen.getByRole("img", {
+    name: "girl on phone",
+  });
+  expect(image).toBeVisible();
+});
+
 test.skip("renders navbar", () => {
   renderPage(<Homepage />);
   const navbar: HTMLElement = screen.getAllByRole("navigation")[0];
