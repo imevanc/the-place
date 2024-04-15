@@ -28,6 +28,8 @@ export const SearchCombobox: FC<{
 
   const filteredPeople: typeof entries = filterEntries(entries, query);
 
+  // TODO: update the Combobox component to redirect to the selected city page
+
   return (
     <Combobox
       as="div"

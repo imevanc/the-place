@@ -1,9 +1,14 @@
-import { screen } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import { Homepage } from "@/app";
 import { renderPage } from "../utils";
 import { copy } from "@/copy";
+import { useScreenMatcher } from "@/hooks";
 
 const { description, search } = copy.home;
+
+jest.mock("../../src/hooks/useScreenMatcher");
+const mockUseScreenMatcher = jest.mocked(useScreenMatcher);
+mockUseScreenMatcher.mockReturnValue({ screenMatches: true });
 
 test("renders headings", () => {
   renderPage(<Homepage />);
@@ -42,20 +47,49 @@ test("renders search label", () => {
   expect(searchLabel).toBeVisible();
 });
 
-test.skip("renders navbar", () => {
+test("renders desktop navbar", () => {
   renderPage(<Homepage />);
-  const navbar: HTMLElement = screen.getAllByRole("navigation")[0];
-  expect(navbar).toBeVisible();
-  const about: HTMLElement = screen.getAllByRole("link", {
+  const navbar: HTMLElement = screen.getByRole("navigation");
+  const about: HTMLElement = screen.getByRole("link", {
     name: /About/i,
-  })[0];
-  expect(about).toBeVisible();
-  const explorebycity: HTMLElement = screen.getAllByRole("link", {
+  });
+  const exploreByCity: HTMLElement = screen.getByRole("link", {
     name: /Explore by city/i,
-  })[0];
-  expect(explorebycity).toBeVisible();
-  const signin: HTMLElement = screen.getAllByRole("button", {
+  });
+  const signIn: HTMLElement = screen.getByRole("button", {
     name: /Sign In/i,
-  })[0];
-  expect(signin).toBeVisible();
+  });
+
+  expect(navbar).toBeVisible();
+  expect(about).toBeVisible();
+  expect(exploreByCity).toBeVisible();
+  expect(signIn).toBeVisible();
+});
+
+test("renders mobile navbar", () => {
+  mockUseScreenMatcher.mockReturnValue({ screenMatches: false });
+  renderPage(<Homepage />);
+  const mobileNavbar: HTMLElement = screen.getByRole("navigation");
+  const burgerButton: HTMLElement = screen.getByRole("button", {
+    name: /Burger Button/i,
+  });
+  expect(burgerButton).toBeVisible();
+  fireEvent.click(burgerButton);
+  const about: HTMLElement = screen.getByRole("link", {
+    name: /About/i,
+  });
+  const downloadTheApp: HTMLElement = screen.getByRole("link", {
+    name: /Download the App/i,
+  });
+  const signIn: HTMLElement = screen.getByRole("link", {
+    name: /Sign In/i,
+  });
+  const exploreByCity: HTMLElement = screen.getByRole("link", {
+    name: /Explore by City/i,
+  });
+  expect(about).toBeVisible();
+  expect(mobileNavbar).toBeVisible();
+  expect(downloadTheApp).toBeVisible();
+  expect(signIn).toBeVisible();
+  expect(exploreByCity).toBeVisible();
 });
