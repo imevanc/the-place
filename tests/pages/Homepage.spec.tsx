@@ -1,10 +1,13 @@
-import { screen, fireEvent } from "@testing-library/react";
+import { FC } from "react";
+import { screen, fireEvent, waitFor } from "@testing-library/react";
 import { Homepage } from "@/app";
 import { renderPage } from "../utils";
 import { copy } from "@/copy";
 import { useScreenMatcher } from "@/hooks";
+import { act } from "react-dom/test-utils";
 
 const { description, search } = copy.home;
+const { nav } = copy.common;
 
 jest.mock("../../src/hooks/useScreenMatcher");
 const mockUseScreenMatcher = jest.mocked(useScreenMatcher);
@@ -43,7 +46,6 @@ test("renders search label", () => {
   const searchCombobox: HTMLInputElement = screen.getByRole("combobox", {
     name: search.label,
   });
-  // TODO: add test for the selection
   expect(searchCombobox.placeholder).toBe(search.placeholder);
   expect(searchLabel).toBeVisible();
   fireEvent.change(searchCombobox, {
@@ -64,11 +66,16 @@ test("renders desktop navbar", () => {
   const signIn: HTMLElement = screen.getByRole("button", {
     name: /Sign In/i,
   });
+  const logo: HTMLElement = screen.getByRole("img", {
+    name: nav.logo.alt,
+  });
 
   expect(navbar).toBeVisible();
   expect(about).toBeVisible();
   expect(exploreByCity).toBeVisible();
   expect(signIn).toBeVisible();
+  expect(logo).toHaveAttribute("alt", nav.logo.alt);
+  expect(logo).toBeVisible();
 });
 
 test("renders mobile navbar", () => {

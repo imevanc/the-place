@@ -1,4 +1,15 @@
 export const copy = {
+  common: {
+    nav: {
+      logo: {
+        alt: "the place logo",
+        src: "/assets/the-place-logo.png",
+      },
+      about: "About",
+      explore: "Explore by City",
+      signIn: "Sign In",
+    },
+  },
   home: {
     description: {
       heading: {
