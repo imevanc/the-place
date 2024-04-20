@@ -31,6 +31,7 @@ test("renders image", () => {
   const image: HTMLElement = screen.getByRole("img", {
     name: description.img,
   });
+  expect(image).toHaveAttribute("alt", description.img);
   expect(image).toBeVisible();
 });
 
@@ -45,6 +46,10 @@ test("renders search label", () => {
   // TODO: add test for the selection
   expect(searchCombobox.placeholder).toBe(search.placeholder);
   expect(searchLabel).toBeVisible();
+  fireEvent.change(searchCombobox, {
+    target: { value: "City of Westminster" },
+  });
+  expect(searchCombobox).toHaveValue("City of Westminster");
 });
 
 test("renders desktop navbar", () => {
