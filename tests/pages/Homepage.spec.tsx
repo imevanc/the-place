@@ -1,30 +1,67 @@
-import { screen, fireEvent } from '@testing-library/react';
-import { Homepage } from '@/app';
-import { renderPage } from '../utils';
-import { useScreenMatcher } from '@/hooks';
+import { screen, fireEvent } from "@testing-library/react";
+import { Homepage } from "@/app";
+import { renderPage } from "../utils";
+import { copy } from "@/copy";
+import { useScreenMatcher } from "@/hooks";
 
-jest.mock('../../src/hooks/useScreenMatcher');
+const { description, search } = copy.home;
+
+jest.mock("../../src/hooks/useScreenMatcher");
 const mockUseScreenMatcher = jest.mocked(useScreenMatcher);
 mockUseScreenMatcher.mockReturnValue({ screenMatches: true });
 
-test('renders heading', () => {
+test("renders headings", () => {
   renderPage(<Homepage />);
-  const heading: HTMLElement = screen.getByRole('heading', {
-    name: /Hello World!/i,
+  const thePlaceHeading: HTMLElement = screen.getByRole("heading", {
+    name: `${description.heading.top} ${description.heading.bottom}`,
   });
-  expect(heading).toBeVisible();
+  expect(thePlaceHeading).toBeVisible();
 });
 
-test('renders desktop navbar', () => {
+test("renders paragraphs", () => {
   renderPage(<Homepage />);
-  const navbar: HTMLElement = screen.getByRole('navigation');
-  const about: HTMLElement = screen.getByRole('link', {
+  const thePlaceParagraph: HTMLElement = screen.getByText(
+    description.paragraph,
+  );
+  expect(thePlaceParagraph).toBeVisible();
+});
+
+test("renders image", () => {
+  renderPage(<Homepage />);
+  const image: HTMLElement = screen.getByRole("img", {
+    name: description.img,
+  });
+  expect(image).toHaveAttribute("alt", description.img);
+  expect(image).toBeVisible();
+});
+
+test("renders search label", () => {
+  renderPage(<Homepage />);
+  const searchLabel: HTMLElement = screen.getByRole("button", {
+    name: search.label,
+  });
+  const searchCombobox: HTMLInputElement = screen.getByRole("combobox", {
+    name: search.label,
+  });
+  // TODO: add test for the selection
+  expect(searchCombobox.placeholder).toBe(search.placeholder);
+  expect(searchLabel).toBeVisible();
+  fireEvent.change(searchCombobox, {
+    target: { value: "City of Westminster" },
+  });
+  expect(searchCombobox).toHaveValue("City of Westminster");
+});
+
+test("renders desktop navbar", () => {
+  renderPage(<Homepage />);
+  const navbar: HTMLElement = screen.getByRole("navigation");
+  const about: HTMLElement = screen.getByRole("link", {
     name: /About/i,
   });
-  const exploreByCity: HTMLElement = screen.getByRole('link', {
+  const exploreByCity: HTMLElement = screen.getByRole("link", {
     name: /Explore by city/i,
   });
-  const signIn: HTMLElement = screen.getByRole('button', {
+  const signIn: HTMLElement = screen.getByRole("button", {
     name: /Sign In/i,
   });
 
@@ -34,25 +71,25 @@ test('renders desktop navbar', () => {
   expect(signIn).toBeVisible();
 });
 
-test('renders mobile navbar', () => {
+test("renders mobile navbar", () => {
   mockUseScreenMatcher.mockReturnValue({ screenMatches: false });
   renderPage(<Homepage />);
-  const mobileNavbar: HTMLElement = screen.getByRole('navigation');
-  const burgerButton: HTMLElement = screen.getByRole('button', {
+  const mobileNavbar: HTMLElement = screen.getByRole("navigation");
+  const burgerButton: HTMLElement = screen.getByRole("button", {
     name: /Burger Button/i,
   });
   expect(burgerButton).toBeVisible();
   fireEvent.click(burgerButton);
-  const about: HTMLElement = screen.getByRole('link', {
+  const about: HTMLElement = screen.getByRole("link", {
     name: /About/i,
   });
-  const downloadTheApp: HTMLElement = screen.getByRole('link', {
+  const downloadTheApp: HTMLElement = screen.getByRole("link", {
     name: /Download the App/i,
   });
-  const signIn: HTMLElement = screen.getByRole('link', {
+  const signIn: HTMLElement = screen.getByRole("link", {
     name: /Sign In/i,
   });
-  const exploreByCity: HTMLElement = screen.getByRole('link', {
+  const exploreByCity: HTMLElement = screen.getByRole("link", {
     name: /Explore by City/i,
   });
   expect(about).toBeVisible();

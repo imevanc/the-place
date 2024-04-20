@@ -1,8 +1,8 @@
-'use client';
-import React, { useState, Fragment } from 'react';
-import { HiX } from 'react-icons/hi';
-import { FC } from 'react';
-import { HiBars4 } from 'react-icons/hi2';
+"use client";
+import React, { useState, Fragment } from "react";
+import { HiX } from "react-icons/hi";
+import { FC } from "react";
+import { HiBars4 } from "react-icons/hi2";
 
 export const MobileNavbar: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,26 +36,31 @@ export const MobileNavbar: FC = () => {
               </a>
             </li>
             <li>
-            <a
-              href='/signin'
-              className="block mt-2 lg:inline-block lg:mt-0 text-primary-400"
-            >
-              Sign In
-            </a>
+              <a
+                href="/signin"
+                className="block mt-2 lg:inline-block lg:mt-0 text-primary-400"
+              >
+                Sign In
+              </a>
             </li>
             <li>
-            <a
-            href='/downloadtheapp'
-              className="text-primary-400 mt-4"
-            >
-              Download the App
-            </a>
+              <a href="/downloadtheapp" className="text-primary-400 mt-4">
+                Download the App
+              </a>
             </li>
           </Fragment>
         )}
       </ol>
       <button onClick={toggleMenu} className="lg:hidden mt-2">
-        {isMenuOpen ? (<><HiX size={28} /> <span className='sr-only'>X button</span></>) : (<><HiBars4 size={28} /> <span className='sr-only'>Burger button</span></>)}
+        {isMenuOpen ? (
+          <>
+            <HiX size={28} /> <span className="sr-only">X button</span>
+          </>
+        ) : (
+          <>
+            <HiBars4 size={28} /> <span className="sr-only">Burger button</span>
+          </>
+        )}
       </button>
     </nav>
   );
