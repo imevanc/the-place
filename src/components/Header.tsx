@@ -2,7 +2,7 @@
 import { FC } from "react";
 import { Navbar } from "./Navbar";
 import { MobileNavbar } from "./MobileNavbar";
-import { useScreenMatcher } from "../hooks/";
+import { useScreenMatcher } from "@/hooks/";
 
 export const Header: FC = () => {
   const { screenMatches } = useScreenMatcher("(min-width: 640px)");
