@@ -26,7 +26,7 @@ export const Navbar: FC = () => {
           <Link href="/">
             <img
               className={logoClassname}
-              src="/assets/the-place-logo.png"
+              src={nav.logo.src}
               alt={nav.logo.alt}
             />
           </Link>

@@ -1,10 +1,8 @@
-import { FC } from "react";
-import { screen, fireEvent, waitFor } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import { Homepage } from "@/app";
 import { renderPage } from "../utils";
 import { copy } from "@/copy";
 import { useScreenMatcher } from "@/hooks";
-import { act } from "react-dom/test-utils";
 
 const { description, search } = copy.home;
 const { nav } = copy.common;
@@ -32,9 +30,9 @@ test("renders paragraphs", () => {
 test("renders image", () => {
   renderPage(<Homepage />);
   const image: HTMLElement = screen.getByRole("img", {
-    name: description.img,
+    name: description.img.alt,
   });
-  expect(image).toHaveAttribute("alt", description.img);
+  expect(image).toHaveAttribute("alt", description.img.alt);
   expect(image).toBeVisible();
 });
 
@@ -99,6 +97,10 @@ test("renders mobile navbar", () => {
   const exploreByCity: HTMLElement = screen.getByRole("link", {
     name: /Explore by City/i,
   });
+  const home: HTMLElement = screen.getByRole("link", {
+    name: /Home/i,
+  });
+  expect(home).toBeVisible();
   expect(about).toBeVisible();
   expect(mobileNavbar).toBeVisible();
   expect(downloadTheApp).toBeVisible();
