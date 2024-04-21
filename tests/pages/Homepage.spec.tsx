@@ -5,6 +5,7 @@ import { copy } from "@/copy";
 import { useScreenMatcher } from "@/hooks";
 
 const { description, search } = copy.home;
+const { nav } = copy.common;
 
 jest.mock("../../src/hooks/useScreenMatcher");
 const mockUseScreenMatcher = jest.mocked(useScreenMatcher);
@@ -29,9 +30,9 @@ test("renders paragraphs", () => {
 test("renders image", () => {
   renderPage(<Homepage />);
   const image: HTMLElement = screen.getByRole("img", {
-    name: description.img,
+    name: description.img.alt,
   });
-  expect(image).toHaveAttribute("alt", description.img);
+  expect(image).toHaveAttribute("alt", description.img.alt);
   expect(image).toBeVisible();
 });
 
@@ -43,7 +44,6 @@ test("renders search label", () => {
   const searchCombobox: HTMLInputElement = screen.getByRole("combobox", {
     name: search.label,
   });
-  // TODO: add test for the selection
   expect(searchCombobox.placeholder).toBe(search.placeholder);
   expect(searchLabel).toBeVisible();
   fireEvent.change(searchCombobox, {
@@ -64,11 +64,16 @@ test("renders desktop navbar", () => {
   const signIn: HTMLElement = screen.getByRole("button", {
     name: /Sign In/i,
   });
+  const logo: HTMLElement = screen.getByRole("img", {
+    name: nav.logo.alt,
+  });
 
   expect(navbar).toBeVisible();
   expect(about).toBeVisible();
   expect(exploreByCity).toBeVisible();
   expect(signIn).toBeVisible();
+  expect(logo).toHaveAttribute("alt", nav.logo.alt);
+  expect(logo).toBeVisible();
 });
 
 test("renders mobile navbar", () => {
@@ -92,6 +97,10 @@ test("renders mobile navbar", () => {
   const exploreByCity: HTMLElement = screen.getByRole("link", {
     name: /Explore by City/i,
   });
+  const home: HTMLElement = screen.getByRole("link", {
+    name: /Home/i,
+  });
+  expect(home).toBeVisible();
   expect(about).toBeVisible();
   expect(mobileNavbar).toBeVisible();
   expect(downloadTheApp).toBeVisible();
