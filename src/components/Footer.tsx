@@ -1,46 +1,40 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-import { FC } from 'react';
-import Link from 'next/link';
-import { FaFacebook, FaInstagram } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
+import { FC, ReactElement } from "react";
+import Link from "next/link";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { copy } from "@/copy";
 
-interface FooterProps {
+const footerLinks: Array<{ href: string; icon: ReactElement }> = [
+  { href: "https://www.facebook.com", icon: <FaFacebook /> },
+  { href: "https://www.instagram.com", icon: <FaInstagram /> },
+  { href: "https://www.x.com", icon: <FaXTwitter /> },
+];
+
+const { nav, footer } = copy.common;
+
+export const Footer: FC<{
   companyName: string;
-}
-
-export const Footer: FC<FooterProps> = ({ companyName }) => {
-  const currentYear = new Date().getFullYear();
-
-  return (
-    <footer className="w-full bg-white relative bottom-0 flex flex-col items-center justify-center md:flex-row md:items-end py-4 px-6 md:justify-between">
-      <div className="md:w-1/3 text-center md:text-left">
-        <img
-          src="assets/the-place-logo.png"
-          alt="Company Logo"
-          className="w-24 h-auto mx-auto border rounded-full border-primary-700 md:ml-2 hidden md:block"
-        />
-        <p className="text-primary-400 mt-2">
-          &copy; {currentYear} {companyName} The Place. All rights reserved.
-        </p>
+}> = ({ companyName }) => (
+  <footer className="w-full bg-white relative bottom-0 py-4 px-4">
+    <div className="w-full flex flex-col md:flex-row justify-between items-center">
+      <span className="text-primary-400">
+        &copy; {new Date().getFullYear()} {companyName} {footer.msg}
+      </span>
+      <div className="md:w-[10%] flex justify-between items-center mb-4 md:mb-0 order-first md:order-last">
+        {footerLinks.map(({ icon, href }, idx) => (
+          <Link
+            key={href + idx}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mr-3 text-2xl text-secondary-800 hover:text-primary-600"
+          >
+            {icon}
+          </Link>
+        ))}
       </div>
-      <div className="md:w-1/3 mb-3"></div>
-      <div className="md:w-1/3 md:mb-0 mb-0 md:text-right">
-        <div className="inline-block mr-3">
-          <Link href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-            <FaFacebook className="text-2xl text-secondary-800 hover:text-primary-600" />
-          </Link>
-        </div>
-        <div className="inline-block mr-3">
-          <Link href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-            <FaInstagram className="text-2xl text-secondary-800 hover:text-primary-600" />
-          </Link>
-        </div>
-        <div className="inline-block">
-          <Link href="https://www.x.com" target="_blank" rel="noopener noreferrer">
-            <FaXTwitter className="text-2xl text-secondary-800 hover:text-primary-600" />
-          </Link>
-        </div>
-      </div>
-    </footer>
-  );
-};
+    </div>
+  </footer>
+);
