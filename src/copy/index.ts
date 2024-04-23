@@ -15,6 +15,7 @@ export const copy = {
         bottom: "FREE - On the App Store",
       },
     },
+    footer: { companyName: "The Place", msg: ". All rights reserved." },
   },
   home: {
     description: {
