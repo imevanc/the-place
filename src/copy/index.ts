@@ -16,6 +16,7 @@ export const copy = {
       },
     },
     footer: { companyName: "The Place.", msg: "All rights reserved." },
+    socials: [ 'Facebook', 'Instagram', 'X' ],
   },
   home: {
     description: {
