@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "The Place To Be",
 };
 
-const {footer} = copy.common;
+const { footer } = copy.common;
 
 const RootLayout = ({
   children,
@@ -19,10 +19,12 @@ const RootLayout = ({
   <html lang="en">
     <body className="h-screen w-screen">
       <div className="h-full max-w-9xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto h-full max-w-8xl flex flex-col items-center justify-start px-2 sm:px-6 lg:px-8">
-          <Header />
-          {children}
-          <Footer companyName={footer.companyName}/>
+        <div className="mx-auto h-full max-w-8xl flex flex-col items-center justify-between px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto flex flex-col items-center justify-between">
+            <Header />
+            {children}
+          </div>
+          <Footer companyName={footer.companyName} />
         </div>
       </div>
     </body>
