@@ -31,9 +31,9 @@ export const Footer: FC<{
 }> = ({ companyName }) => {
   return (
     <footer className="w-full bg-primary-300 flex flex-col md:flex-row justify-between items-center py-4 px-4">
-      <span className="text-secondary-900">
+      <h4 className="text-secondary-900">
         &copy; {new Date().getFullYear()} {companyName} {footer.msg}
-      </span>
+      </h4>
       <div className="lg:w-[10%] flex justify-between items-center mb-4 md:mb-0 order-first md:order-last">
         {footerLinks.map(({ href, name, icon }, idx) => (
           <div key={href + idx}>
