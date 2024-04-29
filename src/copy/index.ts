@@ -15,6 +15,15 @@ export const copy = {
         bottom: "FREE - On the App Store",
       },
     },
+    footer: {
+      companyName: "The Place.",
+      msg: "All rights reserved.",
+      socials: [
+        { href: "https://www.facebook.com", name: "Facebook" },
+        { href: "https://www.instagram.com", name: "Instagram" },
+        { href: "https://www.x.com", name: "X" },
+      ],
+    },
   },
   home: {
     description: {
@@ -34,4 +43,4 @@ export const copy = {
       placeholder: "Search by city",
     },
   },
-};
+} as const;

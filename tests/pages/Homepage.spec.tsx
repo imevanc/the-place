@@ -5,7 +5,7 @@ import { copy } from "@/copy";
 import { useScreenMatcher } from "@/hooks";
 
 const { description, search } = copy.home;
-const { nav } = copy.common;
+const { nav, footer } = copy.common;
 
 jest.mock("../../src/hooks/useScreenMatcher");
 const mockUseScreenMatcher = jest.mocked(useScreenMatcher);
@@ -106,4 +106,26 @@ test("renders mobile navbar", () => {
   expect(downloadTheApp).toBeVisible();
   expect(signIn).toBeVisible();
   expect(exploreByCity).toBeVisible();
+});
+
+test("renders footer", () => {
+  renderPage(<Homepage />);
+  const footerElement: HTMLElement = screen.getByRole("contentinfo");
+  const copyrightElement: HTMLElement = screen.getByRole("heading", {
+    name: "© 2024 The Place. All rights reserved.",
+  });
+
+  const socialX = screen.getByRole("link", {
+    name: "X",
+  });
+  const socialFacebook = screen.getByRole("link", {
+    name: "Facebook",
+  });
+  const socialInstagram = screen.getByRole("link", { name: "Instagram" });
+
+  expect(footerElement).toBeVisible();
+  expect(copyrightElement).toBeVisible();
+  expect(socialFacebook).toBeVisible();
+  expect(socialX).toBeVisible();
+  expect(socialInstagram).toBeVisible();
 });
